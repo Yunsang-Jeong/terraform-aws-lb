@@ -17,8 +17,8 @@ variable "global_additional_tag" {
 
 
 ##########
-# ALB
-variable "alb" {
+# LB
+variable "lb" {
   description = "Name tag convention"
   type = object(
     {
@@ -86,7 +86,7 @@ variable "target_groups" {
       proxy_protocol_v2                  = optional(bool)
       slow_start                         = optional(number)
       target_type                        = optional(string)
-      health_check = optional(set(object(
+      health_check = optional(object(
         {
           path                = string
           matcher             = optional(string)
@@ -98,14 +98,14 @@ variable "target_groups" {
           healthy_threshold   = optional(number)
           unhealthy_threshold = optional(number)
         }
-      )))
-      stickiness = optional(set(object(
+      ))
+      stickiness = optional(object(
         {
           type            = string
           enabled         = optional(bool)
           cookie_duration = optional(number)
         }
-      )))
+      ))
       # Shared
       additional_tag        = optional(map(string))
     }

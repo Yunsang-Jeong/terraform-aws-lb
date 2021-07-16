@@ -96,6 +96,10 @@ resource "aws_lb_listener" "this" {
     }
   }
 
+  tags = merge(
+    var.global_additional_tag
+  )
+
   lifecycle {
     create_before_destroy = true
   }

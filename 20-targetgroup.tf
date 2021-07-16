@@ -4,7 +4,7 @@ resource "aws_lb_target_group" "this" {
   # Required
   vpc_id = each.value.vpc_id
   target_type = each.value.target_type
-  name = join("-", compact([local.project_name, local.stage, each.key, each.value.port]))
+  name = join("-", compact([local.project_name, local.stage, each.key]))
   port = each.value.port
 
   # Optional
@@ -18,7 +18,7 @@ resource "aws_lb_target_group" "this" {
   slow_start = each.value.slow_start
 
   dynamic "health_check" {
-    for_each = each.value.health_check == null ? toset([]) : each.value.health_check
+    for_each = each.value.health_check == null ? toset([]) : toset([each.value.health_check])
     content {
       enabled = health_check.value["enabled"]
       healthy_threshold = health_check.value["healthy_threshold"]
@@ -33,7 +33,7 @@ resource "aws_lb_target_group" "this" {
   }
 
   dynamic "stickiness" {
-    for_each = each.value.stickiness == null ? toset([]) : each.value.stickiness
+    for_each = each.value.stickiness == null ? toset([]) : toset([each.value.stickiness])
     content {
       cookie_duration = stickiness.value["cookie_duration"]
       enabled = stickiness.value["enabled"]
@@ -41,7 +41,7 @@ resource "aws_lb_target_group" "this" {
     }
   }
 
-  tags = merge(var.global_additional_tag, var.alb.additional_tag, {
+  tags = merge(var.global_additional_tag, var.lb.additional_tag, {
     "Name" = join("-", compact([local.project_name, local.stage, each.key, each.value.port]))
   })
 }

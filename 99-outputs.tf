@@ -1,5 +1,5 @@
-output "alb" {
-  description = "alb"
+output "lb" {
+  description = "lb"
   value       = aws_lb.this
 }
 
