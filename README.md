@@ -7,14 +7,14 @@ AWS Load-Balancer를 생성하는 모듈입니다. 하단의 내용은 `terrafor
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.35.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.0.0 |
 
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.35.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0.0 |
 
 ## Inputs
 
